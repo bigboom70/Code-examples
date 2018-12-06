@@ -1,0 +1,47 @@
+/*the question
+How do you find the missing number in a given integer array of 1 to 100?
+
+solutions given (not looked at before making this code or writing this. So it may be obvious not sure)
+http://javarevisited.blogspot.com/2014/11/how-to-find-missing-number-on-integer-array-java.html
+*/
+
+
+#include <iostream>
+#include <ctime>
+
+int main()
+{
+	int list[101] = { 0 };
+
+	srand((int)time(0));
+	int random = (rand() % 100) + 1;
+
+	//generates list of numbers 0 - 100
+	for (int i = 0; i <= 100; i++) {
+		list[i] = i;
+	}
+	
+	//generates random errors in list
+	for (int i = 0; i <= random; i++) {
+		random = (rand() % 100) + 1;
+		list[random] = (rand() % 100) + 1;
+	}
+
+	//solution to finding said errors and pointing them out
+	int expected = 0;
+	int current = 0;
+	for (int i = 0; i <= 100; i++) {
+		expected += i;
+		current += list[i];
+		if (current != expected) {
+			current = expected;
+			std::cout << "the number at array section: " << i << " does not equal: ";
+			std::cout << i << "\ninstead it equals: " << list[i];
+			//could be list[i] instead of all the math but thats no fun
+			std::cout << '\n';
+	
+		}
+		
+	}
+	
+}
